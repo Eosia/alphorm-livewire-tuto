@@ -6,4 +6,10 @@
     <p>{{ $post->content }}</p>
 
     {{ $post->created_at->diffForHumans() }} - {{ $post->user->name }}
+
+    <br>
+
+    <a href="{{ route('posts') }}" wire:navigate.hover class="btn btn-md btn-primary mt-5">
+        < Retour
+    </a>
 </div>

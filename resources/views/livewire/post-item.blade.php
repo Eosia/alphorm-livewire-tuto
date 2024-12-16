@@ -2,7 +2,7 @@
     <div class="card mb-3">
         <div class="card-body">
 
-            <a href="{{ route('post.show', $post->id) }}">
+            <a href="{{ route('post.show', $post->id) }}" wire:navigate.hover>
                 <h5 class="card-title">
                     {{ $post->title }}
                 </h5>

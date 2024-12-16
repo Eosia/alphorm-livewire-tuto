@@ -38,4 +38,9 @@
 
 
     @endforeach
+
+    <div class="mx-auto text-center">
+        {{ $posts->links() }}
+    </div>
+
 </div>
