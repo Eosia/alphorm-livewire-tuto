@@ -9,6 +9,7 @@ class ShowPosts extends Component
 {
 
     public $posts = [];
+    public $title = "Liste des posts";
 
     public function mount() {
         $this->posts = Post::all();
@@ -17,6 +18,8 @@ class ShowPosts extends Component
 
     public function render()
     {
-        return view('livewire.show-posts');
+        return view('livewire.show-posts')
+            ->title($this->title)
+            ;
     }
 }
