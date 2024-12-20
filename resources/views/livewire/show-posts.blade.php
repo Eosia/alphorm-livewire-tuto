@@ -1,46 +1,40 @@
-<div class="row">
+<div class="container">
+    <div class="row">
 
-    <h1 class="text-center mx-auto mb-5">
-        {{ $title }}
-    </h1>
+        <h1 class="text-center mx-auto mb-5">
+            {{ $title }}
+        </h1>
 
-    <livewire:sales  lazy/>
+        {{--    <livewire:sales  lazy/>--}}
 
-    @foreach($posts as $post)
-
-        @livewire('post-item', ['post'=> $post], key($post->id))
-
-{{--        <livewire:post-item :post="$post" :key="$post->id" />--}}
-
-
-
-{{--        <div--}}
-{{--            wire:key="{{ $post->id }}" class="card mb-3"--}}
+{{--        <input type="text" wire:model.search.live.debounce="search"--}}
+{{--               class="form-control my-5 mx-auto text-center" placeholder="Rechercher..."--}}
 {{--        >--}}
-{{--            <div class="card-body">--}}
-{{--                <a href="{{ route('post.show', $post->id) }}">--}}
-{{--                    <h5 class="card-title">--}}
-{{--                        {{ $post->title }}--}}
-{{--                    </h5>--}}
-{{--                </a>--}}
 
-{{--                <p class="card-text">--}}
-{{--                    {{ $post->content }}--}}
-{{--                </p>--}}
+        <form wire:submit="searchPosts" class="mb-4">
+            <div class="row">
+                <div class="col-4">
+                    <input type="text" wire:model="search" class="form-control" placeholder="Rechercher...">
+                </div>
+            </div>
+            <button type="submit" class="d-none">
+                Rechercher
+            </button>
+        </form>
 
-{{--                <p class="card-text">--}}
-{{--                    <small class="text-muted">--}}
-{{--                        {{ $post->created_at->diffForHumans() }}--}}
-{{--                    </small>--}}
-{{--                </p>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+        @if($search)
+            Résultats de recherche pour: {{ $search }}
+        @endif
 
+        @foreach($posts as $post)
 
-    @endforeach
+            @livewire('post-item', ['post'=> $post], key($post->id))
 
-    <div class="mx-auto text-center">
-        {{ $posts->links() }}
+        @endforeach
+
+        <div class="mx-auto text-center">
+            {{ $posts->links() }}
+        </div>
+
     </div>
-
 </div>

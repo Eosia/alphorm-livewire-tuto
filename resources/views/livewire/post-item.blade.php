@@ -15,7 +15,7 @@
 
             <p class="card-text">
                 <small class="text-muted">
-                    {{ $post->created_at->diffForHumans() }}
+                    {{ $post->created_at->diffForHumans() }} - Par {{ $post->user->name }}
                 </small>
             </p>
         </div>

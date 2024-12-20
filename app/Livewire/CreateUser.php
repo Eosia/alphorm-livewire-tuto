@@ -5,20 +5,18 @@ namespace App\Livewire;
 use App\Models\User;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
+use App\Livewire\Forms\UserForm;
 
 class CreateUser extends Component
 {
 
-    #[Rule('required|min:3')]
-    public string $name;
-    #[Rule('required|min:3|email')]
-    public string $email;
-    #[Rule('required|min:8')]
-    public string $password;
+    public UserForm $form;
 
     public function save() {
 
-        User::create($this->validate());
+        $this->form->store();
+
+//        User::create($this->validate());
 
 //        User::create($this->validate([
 //            'name' => 'required',
@@ -32,12 +30,18 @@ class CreateUser extends Component
 //            'password' => $this->password,
 //        ]);
 
-        $this->redirect('/create-user');
+        //$this->redirect('/create-user');
+
+        session()->flash('success', 'User successfully created.');
+
+
     }
 
 
     public function render()
     {
-        return view('livewire.create-user');
+        return view('livewire.create-user', [
+            'users' => User::latest()->get(),
+        ]);
     }
 }
